@@ -10,6 +10,7 @@ URLS = {
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #server.setblocking(False)`21
     server.bind(('127.0.0.1', 4000))
     server.listen(10)
     print('Server working ...')
@@ -20,7 +21,8 @@ def start_server():
             print('exit')
             server.close()
         except socket.error:
-            print('socket.error')
+            pass
+            #print('socket.error')
         else:
             try:
                 data = client.recv(1024).decode('utf-8')
